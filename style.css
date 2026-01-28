@@ -1,12 +1,26 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: #f5f7fb;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
+
+section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .hero {
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
@@ -61,6 +75,11 @@ body {
    color: #fff;
 }
 
+#view-project :hover {
+    background-color: #00040d;
+    cursor: pointer;
+}
+
 #down-resu{
     height: 40px;
     width: 160px;
@@ -96,7 +115,40 @@ body {
     background-repeat: no-repeat;
     box-shadow: 0 30px 60px rgba(0,0,0,0.4);
     border-radius: 20px;
+    overflow: hidden;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
+@media (max-width: 992px) {
+  .hero {
+    padding: 40px 6%;
+  }
+
+  .hero-section {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  .hero-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .icons {
+    justify-content: center;
+  }
+
+  .img {
+    width: 280px;
+    height: 320px;
+    margin-top: 30px;
+  }
+}
+
 
 /* Main Contant Section.......... */
 
@@ -111,8 +163,8 @@ body {
 }
 
 .about-me{
-    height: 300px;
-    width: 510px;
+    height: 400px;
+    width: 550px;
     padding: 30px 50px;
     border-radius: 1rem;
     background-color:#fff;
@@ -138,11 +190,19 @@ body {
     
 }
 
+.course-info :hover{
+    transform: translateY(-3px);
+    background-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
 .info-icon {
     height: 40px;
     width: 40px;
     border-radius: 30%;
+    cursor: pointer;
     background-color: #f5f7fb;
+    color: #034b7e;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,7 +211,7 @@ body {
 
 .info-icon i {
     font-size: 1.5rem;
-    background-color: #0452f9;
+    /* background-color: #0452f9; */
     border-radius: 5px;
 }
 
@@ -166,15 +226,37 @@ body {
     margin-top: 20px;
 }
 
+.tech-info :hover{
+    transform: translateY(-3px);
+    background-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
 .tech-info p{
     margin: 9px 0 0 30px;
     font-weight: 600;
     color: #0f172a;
 }
 
+@media (max-width: 992px) {
+  .container1 {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .about-me,
+  .skills {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* skills section.........*/
+
 .skills{
-    height: 300px;
-    width: 510px;
+    height: 400px;
+    width: 550px;
     padding: 30px 50px;
     border-radius: 1rem;
     background-color: #fff;
@@ -189,15 +271,25 @@ body {
     color:  #0f172a;
 }
 
-.all-skills{
-    display: flex;
-    flex-wrap: wrap;
-    
+.all-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 20px;
+    justify-items: center;
 }
 
-.skill-icon{
-    height: 120px;
-    width: 125px;
+.skill-icon {
+    height: 130px;
+    width: 120px;
+    background-color: #f8fafc;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .tech-icon{
@@ -213,12 +305,21 @@ body {
 
 .skill-icon i {
     font-weight: 800;
-    font-size: 2.3rem;
+    font-size: 2.2rem;
 }
 
+.skill-icon:hover {
+    transform: translateY(-6px);
+    background-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+
 .skill-icon p {
-    color: #475569;
+    color: #334155;
     font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
 }
 
 #i1{
@@ -242,6 +343,24 @@ body {
 #i7{
     color: #007acc;
 }
+
+@media (max-width: 600px) {
+  .all-skills {
+    justify-content: center;
+  }
+
+  .skill-icon {
+    width: 100px;
+    height: 110px;
+  }
+  .skills{
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* project section.........*/
 
 .projects{
     padding: 1% 6%;
@@ -322,6 +441,30 @@ body {
   padding: 10px 25px;
 }
 
+.project-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 992px) {
+  .project-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .project-container {
+    grid-template-columns: 1fr;
+  }
+
+  .project-box,
+  .project-img {
+    width: 100%;
+  }
+}
+
+
 /* Experience and contact me section................. */
 
 .last-section{
@@ -390,6 +533,20 @@ body {
     margin-left: 100px;
     font-size: 1.1rem;
 }
+
+@media (max-width: 992px) {
+  .exp-cont {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .experience,
+  .contact {
+    width: 100%;
+    height: auto;
+  }
+}
+
 
 /* Contact Section ......... */
 
@@ -470,4 +627,20 @@ form button {
     border-radius: 12px;
 }
 
+form button :hover{
+    cursor: pointer;
+    background-color: #010a1d;
+}
+
+@media (max-width: 600px) {
+  input,
+  textarea,
+  form button {
+    font-size: 14px;
+  }
+  .contact{
+    width: 100%;
+    height: auto;
+  }
+}
 
